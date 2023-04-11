@@ -7,7 +7,7 @@ The idea is to exploit the Transformer to find relationships between different t
 	[D, n] -> Transformer -> [L, n] -> FC -> [L, 1]
 
 The dataset used in this project was downloaded from [here](https://www.kaggle.com/datasets/paultimothymooney/stock-market-data). So far, I only used the NASDAQ dataset. In the original dataset, each ticker consists of 5 features: *Open*, *Volume*, *High*, *Low* and *Closing* (and Adjusted Closing). At first, I tried to use an AutoEncoder to compress these features into a scalar, which I knew probably wouldn't work, but I still tried it, and failed, after which I only decided to use the *High* feature moving forward.
-I constructed a new dataset table consisting of rows representing each day and columns representing the High price for each ticker. The resulting table had 13356 rows and 1564 columns. The problem was most of the table was sparse, aka had no values in cells. This was a problem, so I had to reduce the table to only a subset of rows and columns where I would still have a relatively high number of columns/tickers and where each ticker would have an unbroken chain of non-nan values. I wrote a function to find such subsets and reduced the table to 499 tickers across 6678 days. Later on, I removed a random ticker from the dataset because the Transformer requires the input feature vector to have a dimension divisible by its number of heads. By default the number of heads is 8, but I reduced it to 6, because 498 is divisible by 6.
+I constructed a new dataset table consisting of rows representing each day and columns representing the High price for each ticker. The resulting table had 13356 rows and 1564 columns. The problem was most of the table was sparse, aka had no values in cells. I had to reduce the table to only a subset of rows and columns where I would still have a relatively high number of columns/tickers and where each ticker would have an unbroken chain of non-nan values. I wrote a function to find such subsets and reduced the table to 499 tickers across 6678 days. Later on, I removed a random ticker from the dataset because the Transformer requires the input feature vector to have a dimension divisible by its number of heads. By default the number of heads is 8, but I reduced it to 6, because 498 is divisible by 6.
 
 I wrote my own function for splitting the dataset into train, validation and test subsets because I couldn't find an equivalent in pytorch. I couldn't just take random indices for each subset because that would almost certainly create overlaps and then the model couldn't be properly tested. My function makes sure there aren't any overlaps in sequences, in other words, makes sure the model is tested on completely unseen sequences of data.
 
@@ -21,8 +21,10 @@ I used the mean squared error for the loss function, but to finally conclude how
 
 
 Things to try out:
-Represent all data as returns (and properly scale it)
-Find a way to use all available ticker features
-Look into moving average smoothing and try to apply it
-Actually do research what other people have done
-...
+	
+	Represent all data as returns (and properly scale it)
+	Find a way to use all available ticker features
+	Look into moving average smoothing and try to apply it
+	Actually do research what other people have done
+	
+	...
