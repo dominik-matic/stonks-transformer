@@ -24,6 +24,7 @@ Things to try out:
 	
 	Represent all data as returns (and properly scale it)
 	Find a way to use all available ticker features
+	include some sort of time encoding
 	Look into moving average smoothing and try to apply it
 	Actually do research what other people have done
 	
