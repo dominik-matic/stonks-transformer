@@ -21,7 +21,7 @@ I chose the input sequence to be of length *D* = 90 days, and the output sequenc
 
 	[90, 498] -> Transformer -> [7, 498] -> FC -> [7, 1]
 
-I used the mean squared error for the loss function, but to finally conclude how accurate my model turned out to be, I constructed my own "accuracy" metric, by simply checking wether the model correctly predicted if returns would be positive or negative. So far, my pseudo-accuracy hovers around 0.5, making this whole thing a failure, but I am learning a lot and not giving up yet, still have some things to try out:
+I used the mean squared error for the loss function, but to finally conclude how accurate my model turned out to be, I constructed my own "accuracy" metric, by simply checking wether the model correctly predicted if returns would be positive or negative. So far, my pseudo-accuracy hovers around 0.5, making this whole thing a failure, but I am learning a lot and not giving up yet because there's a lot more things to try out.
 
 
 ## Things to try out
@@ -31,5 +31,4 @@ I used the mean squared error for the loss function, but to finally conclude how
 	include some sort of time encoding
 	Look into moving average smoothing and try to apply it
 	Actually do research what other people have done
-	
 	...
